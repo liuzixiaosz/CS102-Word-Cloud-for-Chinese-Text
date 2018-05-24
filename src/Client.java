@@ -3,7 +3,8 @@ import fileutils.FileContent;
 import wordcloud.StringFreqType;
 import wordcloud.WordFreq;
 
-import java.util.Queue;
+import java.util.Iterator;
+import java.util.List;
 
 public class Client {
     public static void main(String[] args) {
@@ -14,10 +15,13 @@ public class Client {
         fc.readFile(url, charset[0]);
         System.out.println(fc.getContent());
         WordFreq fq = new WordFreq(fc.getContent());
-        Queue<StringFreqType> wordFreq = fq.getStringFreqQueue();
 
-        for (StringFreqType sfc : wordFreq) {
-            System.out.println(sfc.str + " " + sfc.freq);
+
+        List<StringFreqType> wordFreqList = fq.getStringFreqList();
+        Iterator<StringFreqType> iter = wordFreqList.iterator();
+        while (iter.hasNext()) {
+            StringFreqType sft = iter.next();
+            System.out.println(sft.str + " " + sft.freq);
         }
 //        FileHeadPiece.extractTo("testres/test5_ASCII.txt", "testres/test5_ASCII_head.txt");
     }

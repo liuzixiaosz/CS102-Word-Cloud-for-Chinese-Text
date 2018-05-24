@@ -8,7 +8,7 @@ import java.util.*;
 
 
 public class WordFreq {
-    private static String sPuncString = "[`~!@#$%^&*()-+_=|{}':;',\\[].<>/?~！@#￥「」《》·……&*（）——|{}【】‘；：”“'。，、？]";
+    private static String sPuncString = "[`~!@#$%^&*()-+_=|{}\':;\",\\[].<>/?～！@#￥「」《》·……&*（）——|【】；：”“‘’。，、？]";
     private static Set<Character> sPuncSet;
     private static final double EXPECTED_MODIFIER = 1.74;
     private static final int WORDS_MAX = 56008;
@@ -18,7 +18,7 @@ public class WordFreq {
     private String mContent;
     private List<Term> mWords;
     private Map<String, Integer> mStringMap;
-    private Queue<StringFreqType> mSortedWordQueue;
+    private List<StringFreqType> mSortedList;
 
     private void parseWords() {
         mWords = HanLP.segment(mContent);
@@ -46,19 +46,18 @@ public class WordFreq {
                 continue;
             }
             if (this.mStringMap.containsKey(word)) {
-                Integer f = mStringMap.get(word);
-                this.mStringMap.replace(word, ++f);
+                this.mStringMap.replace(word, mStringMap.get(word) + 1);
             } else {
                 this.mStringMap.put(word, 1);
             }
         }
-        mSortedWordQueue = new PriorityQueue<>(mStringMap.size(),
-                (o1, o2) -> o2.freq.compareTo(o1.freq));
+        mSortedList = new ArrayList<>(mStringMap.size());
         Iterator iter = mStringMap.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<String, Integer> entry = (Map.Entry) iter.next();
-            mSortedWordQueue.add(new StringFreqType(entry.getKey(), entry.getValue()));
+            mSortedList.add(new StringFreqType(entry.getKey(), entry.getValue()));
         }
+        Collections.sort(mSortedList, (o1, o2) -> o2.freq.compareTo(o1.freq));
     }
 
     public String getContent() { return this.mContent; }
@@ -122,14 +121,14 @@ public class WordFreq {
          */
 
         int tmp_size = (int) (content.length() / EXPECTED_MODIFIER);
-        this.mMapSizeRef = (tmp_size >= WORDS_MAX) ? WORDS_MAX : tmp_size;
-        this.mStringMap = new HashMap(content.length() / mMapSizeRef + OFFSET);
+        this.mMapSizeRef = (tmp_size + OFFSET >= WORDS_MAX) ? WORDS_MAX : tmp_size;
+        this.mStringMap = new HashMap(mMapSizeRef);
 
     }
 
-    public Queue<StringFreqType> getStringFreqQueue() {
-        if (this.mSortedWordQueue == null) { calFreq(); }
-        return this.mSortedWordQueue;
+    public List<StringFreqType> getStringFreqList() {
+        if (this.mSortedList == null) { calFreq(); }
+        return this.mSortedList;
     }
 
     public void setCharset(String charset) {
