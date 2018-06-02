@@ -23,6 +23,5 @@ public class Client {
             StringFreqType sft = iter.next();
             System.out.println(sft.str + " " + sft.freq);
         }
-//        FileHeadPiece.extractTo("testres/test5_ASCII.txt", "testres/test5_ASCII_head.txt");
     }
 }
