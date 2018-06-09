@@ -39,7 +39,7 @@ public class LabelCreator {
                 l.setLayoutX(areas.get(j).x + offset_x);
                 l.setLayoutY(areas.get(j).y + offset_y);
                 Random r = new Random();
-                l.setRotate(r.nextInt(360));
+                l.setRotate(90 - r.nextInt(181));
                 l.setTextFill(Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
                 labelList.add(l);
                 word_idx++;
