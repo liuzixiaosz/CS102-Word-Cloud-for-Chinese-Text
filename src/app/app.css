@@ -1,0 +1,21 @@
+.root{
+    -fx-background-color: orange;
+}
+.button{
+    -fx-background-color: #888888;
+    -fx-font-size: 16pt;
+}
+.button:hover{
+    -fx-background-color: lightskyblue;
+}
+.button_box{
+    -fx-background-color: #777fff;
+}
+.volume_box{
+    -fx-background-color: #777fff;
+}
+#lblTitle {
+    -fx-font-size: 20px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: darkslategray;
+}
