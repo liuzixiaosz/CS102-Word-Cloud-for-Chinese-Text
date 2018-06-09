@@ -31,7 +31,7 @@ public class LabelCreator {
                 String s = tmp.substring(0, tmp.lastIndexOf("/"));
                 Label l = new Label(s);
                 int this_freq = wordFreqList.get(word_idx).freq;
-                double size = Math.pow(Math.min(this_freq, 70), 0.7) + this_freq * 20 / wordFreqList.get(0).freq;
+                double size = Math.pow(this_freq, 0.65) * 60 / Math.pow(wordFreqList.get(0).freq, 0.65) + 1;
                 l.setFont(new Font(getRandomFont(), size));
 //                l.getBoundsInLocal();
                 double offset_x = -size * s.length() / 2;
@@ -39,7 +39,7 @@ public class LabelCreator {
                 l.setLayoutX(areas.get(j).x + offset_x);
                 l.setLayoutY(areas.get(j).y + offset_y);
                 Random r = new Random();
-                l.setRotate(20 - r.nextInt(40));
+                l.setRotate(r.nextInt(360));
                 l.setTextFill(Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
                 labelList.add(l);
                 word_idx++;

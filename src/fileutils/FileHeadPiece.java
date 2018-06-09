@@ -3,7 +3,7 @@ package fileutils;
 import java.io.*;
 
 public class FileHeadPiece {
-    private static String sTestLine;
+    private static byte[] sTestLine;
     private static String sInitFilePath;
     private static String sTestFilePath;
     public static void setOutPath(String path) {
@@ -18,16 +18,14 @@ public class FileHeadPiece {
     }
 
     private static void readInitialBytes() {
-        InputStreamReader isr;
         int chars_read;
 
-        char[] buffer = new char[50];
+        byte[] buffer = new byte[100];
         try (
-                FileInputStream input = new FileInputStream(sInitFilePath)
+                BufferedInputStream input = new BufferedInputStream(new FileInputStream(sInitFilePath))
         ) {
-            isr = new InputStreamReader(input);
-            if ((chars_read = isr.read(buffer, 0, buffer.length)) != -1) {
-                sTestLine = new String(java.util.Arrays.copyOfRange(buffer, 0, chars_read));
+            if ((chars_read = input.read(buffer, 0, buffer.length)) != -1) {
+                sTestLine = java.util.Arrays.copyOfRange(buffer, 0, chars_read);
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -36,9 +34,8 @@ public class FileHeadPiece {
 
     private static void outputTestLine() {
         File f = new File(sTestFilePath);
-        byte buffer[] = sTestLine.getBytes();
         try (FileOutputStream output = new FileOutputStream(f)) {
-            output.write(buffer, 0, buffer.length);
+            output.write(sTestLine, 0, sTestLine.length);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
