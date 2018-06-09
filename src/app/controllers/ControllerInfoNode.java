@@ -2,7 +2,7 @@ package app.controllers;
 
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import wordcloud.StringFreqType;
+import wordcount.StringFreqType;
 
 import java.io.File;
 import java.util.List;

@@ -114,6 +114,7 @@ public class FileCharsetDetector {
 
             if (isAscii) {
                 System.out.print("CHARSET = ASCII");
+                mProb = new String[]{"ASCII"};
                 tryToOutput(path, "ASCII");
                 mFound = true;
             }

@@ -10,9 +10,9 @@ public class FileHeadPiece {
         sInitFilePath = path;
     }
 
-    public static void extractTo(String file, String test_file_path) {
+    public static void extractTo(String file_path, String test_file_path) {
         sTestFilePath = test_file_path;
-        sInitFilePath = file;
+        sInitFilePath = file_path;
         readInitialBytes();
         outputTestLine();
     }
@@ -21,7 +21,7 @@ public class FileHeadPiece {
         InputStreamReader isr;
         int chars_read;
 
-        char[] buffer = new char[200];
+        char[] buffer = new char[50];
         try (
                 FileInputStream input = new FileInputStream(sInitFilePath)
         ) {

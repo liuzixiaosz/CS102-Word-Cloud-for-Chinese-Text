@@ -7,10 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -21,12 +23,10 @@ import java.io.File;
 public class StartMenuController implements Controllable {
 
     private final FileChooser FILE_CHOOSER = new FileChooser();
-    @FXML
-    private AnchorPane startPane;
-    @FXML
-    private Button chooseFile;
-    @FXML
-    private Button start;
+    @FXML private AnchorPane startPane;
+    @FXML private Button chooseFile;
+    @FXML private Button start;
+    @FXML private Label fileName;
     private Scene scene;
     private Stage stage;
     private String[] charsets;
@@ -56,6 +56,8 @@ public class StartMenuController implements Controllable {
         if (file.canRead()) {
             this.file = file;
         }
+        fileName.setText(file.getName());
+        fileName.setFont(new Font( "SongTi TC", 10));
     }
 
     public void startPlay(Event event) {

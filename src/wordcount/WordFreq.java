@@ -1,4 +1,4 @@
-package wordcloud;
+package wordcount;
 
 
 import com.hankcs.hanlp.HanLP;

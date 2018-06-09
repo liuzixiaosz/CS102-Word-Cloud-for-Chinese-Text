@@ -1,7 +1,7 @@
 import fileutils.FileCharsetDetector;
 import fileutils.FileContent;
-import wordcloud.StringFreqType;
-import wordcloud.WordFreq;
+import wordcount.StringFreqType;
+import wordcount.WordFreq;
 
 import java.util.Iterator;
 import java.util.List;

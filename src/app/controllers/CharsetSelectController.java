@@ -13,10 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import wordcloud.StringFreqType;
-import wordcloud.WordFreq;
+import wordcount.StringFreqType;
+import wordcount.WordFreq;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,10 +24,10 @@ public class CharsetSelectController implements Controllable {
 
     @FXML private ListView<Text> listView;
     @FXML private AnchorPane pane;
+
     @FXML private Label text;
     private Scene scene;
     private String testCtnt;
-    private File file;
     private FileContent fileContent;
     private String charset;
 
@@ -45,7 +44,7 @@ public class CharsetSelectController implements Controllable {
     }
 
     public void displayCloud() {
-        Pane cloudPane = ControllerInfoNode.controllers[2].getPane();
+        Pane cloudPane = ((WordCloudController) ControllerInfoNode.controllers[2]).getCloudPane();
         FilteredList<Circle> circles_filtered = ((ObservableList)
                 cloudPane.getChildren()).filtered(e -> e instanceof Circle);
         List<Circle> circles = new LinkedList<>();
@@ -57,7 +56,7 @@ public class CharsetSelectController implements Controllable {
         ControllerInfoNode.wordFreqList = wordFreqList;
         ControllerInfoNode.circles = circles;
         List<Label> labelList = LabelCreator.getLabels(wordFreqList, circles);
-        ControllerInfoNode.controllers[2].getPane().getChildren().addAll(labelList);
+        cloudPane.getChildren().addAll(labelList);
         ControllerInfoNode.stage.setScene(ControllerInfoNode.controllers[2].getScene());
     }
 
