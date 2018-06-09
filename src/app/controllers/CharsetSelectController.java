@@ -54,6 +54,8 @@ public class CharsetSelectController implements Controllable {
         fileContent.readFile(ControllerInfoNode.file.getPath(), charset);
         WordFreq fq = new WordFreq(fileContent.getContent());
         List<StringFreqType> wordFreqList = fq.getStringFreqList();
+        ControllerInfoNode.wordFreqList = wordFreqList;
+        ControllerInfoNode.circles = circles;
         List<Label> labelList = LabelCreator.getLabels(wordFreqList, circles);
         ControllerInfoNode.controllers[2].getPane().getChildren().addAll(labelList);
         ControllerInfoNode.stage.setScene(ControllerInfoNode.controllers[2].getScene());
