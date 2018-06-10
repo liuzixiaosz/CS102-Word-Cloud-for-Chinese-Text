@@ -4,7 +4,7 @@
 .button{
     -fx-background-color: #001000;
     -fx-font-size: 12pt;
-    -fx-font-family: "Kaiti TC";
+    -fx-font-family: "Weibei TC";
     -fx-text-fill: #00ff00;
 }
 .button:hover{
@@ -14,9 +14,15 @@
     -fx-background-color: #00ff00;
 }
 
+#lblTitle {
+    -fx-font-size: 20px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: darkslategray;
+}
+
 .list-view {
     -fx-background-color: #001000;
-    -fx-font-family: "LiHei Pro";
+    -fx-font-family: "Weibei TC";
     -fx-border-width: 2;
     -fx-text-fill: #00ff00;
     -fx-border-color: #00ff00;
@@ -24,8 +30,12 @@
 
 .list-cell {
     -fx-background-color: #001000;
-    -fx-font-family: "PingFang TC";
+    -fx-font-family: "Weibei TC";
     -fx-text-fill: #00ff00;
     -fx-border-color: #00ff00;
 }
 
+.label {
+    -fx-font-family: "Weibei TC";
+    -fx-color-label-visible: #00ff00;
+}

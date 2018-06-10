@@ -14,12 +14,6 @@
     -fx-background-color: #00ff00;
 }
 
-/*#lblTitle {*/
-    /*-fx-font-size: 20px;*/
-    /*-fx-font-weight: bolder;*/
-    /*-fx-text-fill: darkslategray;*/
-/*}*/
-
 .list-view {
     -fx-background-color: #001000;
     -fx-font-family: "LiHei Pro";
@@ -34,3 +28,4 @@
     -fx-text-fill: #00ff00;
     -fx-border-color: #00ff00;
 }
+

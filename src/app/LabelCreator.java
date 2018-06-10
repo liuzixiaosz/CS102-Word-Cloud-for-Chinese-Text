@@ -13,7 +13,12 @@ import java.util.Random;
 
 public class LabelCreator {
     private final static int MODIFIER = 9;
-    private final static int MAXNUM = 135;
+    private final static int MAXNUM = 234;
+    public static final String[] MY_FONTS = {
+
+            "Weibei TC", "Kaiti TC", "LiHei Pro"
+
+    };
     public static List<Label> getLabels(List<StringFreqType> wordFreqList, List<Circle> circles) {
         List<Label> labelList = new LinkedList<>();
         int terms = (wordFreqList.size() >= MAXNUM) ? MAXNUM : wordFreqList.size();
@@ -31,8 +36,8 @@ public class LabelCreator {
                 String s = tmp.substring(0, tmp.lastIndexOf("/"));
                 Label l = new Label(s);
                 int this_freq = wordFreqList.get(word_idx).freq;
-                double size = Math.pow(this_freq, 0.65) * 60 / Math.pow(wordFreqList.get(0).freq, 0.65) + 1;
-                l.setFont(new Font(getRandomFont(), size));
+                double size = Math.pow(this_freq, 0.65) * 60 / Math.pow(wordFreqList.get(0).freq, 0.65) + 0.3;
+
 //                l.getBoundsInLocal();
                 double offset_x = -size * s.length() / 2;
                 double offset_y = -size / 2;
@@ -41,6 +46,7 @@ public class LabelCreator {
                 Random r = new Random();
                 l.setRotate(90 - r.nextInt(181));
                 l.setTextFill(Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+                l.setFont(new Font(getRandomFont() ,size));
                 labelList.add(l);
                 word_idx++;
                 if (word_idx >= terms) break xml;
@@ -50,10 +56,7 @@ public class LabelCreator {
     }
 
     public static String getRandomFont() {
-        String[] fonts = {"Weibei TC", "Songti TC", "Xingkai TC",
-                "Times", "HanziPen TC", "Libian TC",
-                "Lantinghei TC", "LiHei Pro", "Yuanti TC", "Kaiti TC",
-        };
-        return fonts[(new Random()).nextInt(fonts.length)];
+
+        return MY_FONTS[(new Random()).nextInt(MY_FONTS.length)];
     }
 }
