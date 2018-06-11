@@ -39,7 +39,7 @@ public class LabelCreator {
                 String s = tmp.substring(0, tmp.lastIndexOf("/"));
                 Label l = new Label(s);
                 int this_freq = wordFreqList.get(word_idx).freq;
-                double size = Math.pow(this_freq, 0.75) * 30 / Math.pow(wordFreqList.get(0).freq, 0.75) + 0.5;
+                double size = Math.pow(this_freq, 0.8) * 30 / Math.pow(wordFreqList.get(0).freq, 0.8) + 1.6;
 
 //                l.getBoundsInLocal();
                 double offset_x = -size * s.length() / 2;
