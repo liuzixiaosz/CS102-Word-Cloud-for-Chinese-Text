@@ -11,7 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
@@ -19,6 +22,7 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 public class WordCloudController implements Controllable {
 
@@ -27,6 +31,7 @@ public class WordCloudController implements Controllable {
     @FXML
     private AnchorPane cloudPane;
     private Scene scene;
+    public static Color backGroundColor = Color.BLACK;
 
     @Override
     public Scene getScene() {
@@ -83,6 +88,10 @@ public class WordCloudController implements Controllable {
     }
 
     public void refresh() {
+        Random r = new Random();
+        backGroundColor = backGroundColors[r.nextInt(backGroundColors.length)];
+        BackgroundFill bg = new BackgroundFill(backGroundColor, null, null);
+        getPane().setBackground(new Background(bg));
         List<Label> labelList = LabelCreator.getLabels(ControllerInfoNode.wordFreqList, ControllerInfoNode.circles);
         getCloudPane().getChildren().clear();
         getCloudPane().getChildren().addAll(labelList);
@@ -96,4 +105,21 @@ public class WordCloudController implements Controllable {
         lv.getItems().addAll(ControllerInfoNode.wordFreqList);
         ControllerInfoNode.stage.setScene(ControllerInfoNode.controllers[3].getScene());
     }
+
+    public static Color[] backGroundColors = {
+            Color.BLACK,
+            Color.WHITE,
+            Color.rgb(255,255, 200),
+            Color.rgb(200,255, 255),
+            Color.rgb(255,200, 255),
+            Color.rgb(230, 230, 255),
+            Color.rgb(230, 255, 230),
+            Color.rgb(255, 230, 230),
+            Color.rgb(30, 0, 0),
+            Color.rgb(0, 30, 0),
+            Color.rgb(0, 0, 30),
+            Color.rgb(20, 10, 20),
+            Color.rgb(20, 20, 10),
+            Color.rgb(10, 20, 20),
+    };
 }
