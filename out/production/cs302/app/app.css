@@ -6,12 +6,9 @@
     -fx-font-size: 12pt;
     -fx-font-family: "Kaiti TC";
     -fx-text-fill: #00ff00;
+    -fx-animated: true;
 }
 
-
-.button:hover{
-    -fx-background-color: #0000ff;
-}
 .button_box{
     -fx-background-color: #00ff00;
 }
@@ -27,7 +24,6 @@
 
 .list-cell {
     -fx-background-color: #001000;
-    -fx-font-family: "Xingkai TC";
     -fx-font-family: "Weibei TC";
     -fx-text-fill: #00ff00;
     -fx-border-color: #00ff00;

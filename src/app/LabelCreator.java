@@ -17,8 +17,8 @@ public class LabelCreator {
     private final static int MAXNUM = 234;
     public static final String[] MY_FONTS = {
             "Kaiti TC",
-            "LiHei Pro",
-            "Xingkai TC"
+            "Weibei TC",
+
     };
 
     public static List<Label> getLabels(List<StringFreqType> wordFreqList, List<Circle> circles) {

@@ -8,10 +8,6 @@
     -fx-text-fill: #00ff00;
 }
 
-
-.button:hover{
-    -fx-background-color: #0000ff;
-}
 .button_box{
     -fx-background-color: #00ff00;
 }
