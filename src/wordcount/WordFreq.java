@@ -29,26 +29,12 @@ public class WordFreq {
         String word;
         for (Term t_word : this.mWords) {
             word = t_word.toString();
-            char c = word.charAt(0);
-
-            /**
-             * isLetter只能判断是否是有意义的字符，不能判断是否是中文。
-             * isChinese最好能实现
-             *
-             */
-//            if (!(!isPunc(c)
-//                    && !Character.isSpaceChar(c)
-//                    && !Character.isWhitespace(c)
-//                    )) {
-//                continue;
-//            }
-            if (!Character.isLetter(c) && !Character.isDigit(c)) {
-                continue;
-            }
-            if (this.mStringMap.containsKey(word)) {
-                this.mStringMap.replace(word, mStringMap.get(word) + 1);
-            } else {
-                this.mStringMap.put(word, 1);
+            if (isMeaningful(t_word)) {
+                if (this.mStringMap.containsKey(word)) {
+                    this.mStringMap.replace(word, mStringMap.get(word) + 1);
+                } else {
+                    this.mStringMap.put(word, 1);
+                }
             }
         }
         mSortedList = new ArrayList<>(mStringMap.size());
@@ -60,8 +46,13 @@ public class WordFreq {
         Collections.sort(mSortedList, (o1, o2) -> o2.freq.compareTo(o1.freq));
     }
 
-    public String getContent() { return this.mContent; }
+    public String getContent() {
+        return this.mContent;
+    }
+
     public void setContent(String content) {
+
+
         this.mContent = content;
 
         /**
@@ -110,7 +101,7 @@ public class WordFreq {
          19	都	34323	0.3592	19.6081
          20	人	33991	0.3557	19.9638
          ------------------------------
-                                19.9638 = 0.2
+         19.9638 = 0.2
          *
          * c = x / 1.39 * (1 - 0.2) + 20
          *
@@ -123,11 +114,17 @@ public class WordFreq {
         int tmp_size = (int) (content.length() / EXPECTED_MODIFIER);
         this.mMapSizeRef = (tmp_size + OFFSET >= WORDS_MAX) ? WORDS_MAX : tmp_size;
         this.mStringMap = new HashMap(mMapSizeRef);
+        unMeaningfulNatures = new HashSet<>(mMapSizeRef);
+        for (char c : unMeaningfulNaturesArr) {
+            unMeaningfulNatures.add(c);
+        }
 
     }
 
     public List<StringFreqType> getStringFreqList() {
-        if (this.mSortedList == null) { calFreq(); }
+        if (this.mSortedList == null) {
+            calFreq();
+        }
         return this.mSortedList;
     }
 
@@ -150,4 +147,13 @@ public class WordFreq {
         }
         return sPuncSet.contains(c);
     }
+
+    public boolean isMeaningful(Term tm) {
+        return !unMeaningfulNatures.contains(tm.nature.firstChar());
+    }
+
+    public static HashSet<Character> unMeaningfulNatures;
+    private static char[] unMeaningfulNaturesArr = {'d', 'e', 'h', 'k', 'o', 'p', 'q', 'w', 'u', 'v', 'x', 'y', 'z', 'm', 'c', 'f', 'r'};
 }
+
+

@@ -72,7 +72,7 @@ public class WordCloudController implements Controllable {
                             (int) getCloudPane().getHeight());
                     getPane().snapshot(null, writableImage);
                     RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                    //Write the snapshot to the chosen file
+
                     ImageIO.write(renderedImage, "png", f);
                 } catch (IOException ex) {
                     ex.printStackTrace();
